@@ -36,29 +36,16 @@ app.get("/api/notes", function (req, res) {
     
 });
 
-// function readNotes(callback) {
-//     fs.readFile("db/db.json", "utf8", function (error, data) {
-//         if (error) {
-//             return console.log(error);
-//         }
-//         return callback(JSON.parse(data));
-//     });
-// }
-
-
-// function writeNotes(notes, callback) {
-//     fs.writeFile("db/db.json", JSON.stringify(notes), function (err) {
-//         if (err) {
-//             return console.log(err);
-//         }
-//         callback();
-//     });
-// };
 
 app.post("/api/notes", function (req, res) {
     var newNote = req.body;
     console.log(newNote);
-        // data.push(newNote);
+    notes.push(newNote);
+
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes, null, 2), "utf-8");
+    res.json(newNote);
+
+
 
 });
 
